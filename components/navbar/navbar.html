@@ -1,0 +1,11 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a ng-click="welcome.newSearch()" class="navbar-brand" href="">Get Posts</a>
+            <a ng-click="welcome.displayAllPosts($event)" ng-class="{notactive: welcome.totalPosts !== welcome.joinedPosts.length, active: welcome.allPostsLoaded && welcome.totalPosts > 50}" class="navbar-brand" href="">
+                See all <span ng-show="welcome.hideSearchArea">{{welcome.joinedPosts.length || welcome.totalPosts}} </span>
+                <span ng-show="welcome.hideSearchArea" ng-hide="welcome.joinedPosts.length == welcome.totalPosts">({{welcome.totalPosts}})</span> posts</a>
+            <a ng-click=welcome.getRandomUser($event) class="navbar-brand" ng-class="{notactive: welcome.allPostsLoaded || welcome.isPostsLoading}" href="">Random User</a>
+        </div>
+    </div>
+</nav>

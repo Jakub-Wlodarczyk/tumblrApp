@@ -1,0 +1,40 @@
+<navbar class="navbar-element"></navbar>
+
+<div class="container welcome-container">
+    <div  ng-hide="welcome.hideSearchArea || welcome.showAllPosts" class="row welcome">
+        <div class="text-center">
+            <input id="user-search-field" name="userfield" type="text" placeholder="tumblr user name" ng-model="tumblrUser" />
+            <button ng-disabled="!(!!tumblrUser) || tumblrUser.length === 0" class="btn btn-success" ng-click="welcome.getScript(tumblrUser, welcome.logResult)" type="button">Get Posts</button>
+        </div>
+    </div>
+
+    <div ng-hide="welcome.isNewSearch || welcome.showAllPosts" class="initial-posts">
+        <h3 class="text-center" ng-show="welcome.hideSearchArea">tumblr user: {{tumblrUser}}
+            (<span ng-show="welcome.firstPosts.length !== welcome.joinedPosts.length">first</span>
+            {{welcome.firstPosts.length}} posts)</h3><br />
+        <div class="initial-posts-list text-center" ng-repeat="post in welcome.firstPosts">
+            <div ng-if="post['link-text'].length > 0 && post['link-url'].length > 0">
+                <a href="{{post['link-url']}}">{{post['link-text']}}</a>
+            </div>
+            <img class="lazy" ng-if="post['photo-url-400'].length > 0" ng-src="{{post['photo-url-400']}}" />
+            <div id="{{$index}}" class="post-description" ng-bind-html="post['photo-caption']" ng-if="post['photo-caption'].length > 0">{{post['photo-caption']}}</div>
+            <div ng-if="post['video-player'].length > 0" ng-bind-html="post['video-player']">{{post['video-player']}}</div>
+            <div ng-if="post['regular-body'].length > 0" ng-bind-html="post['regular-body']">{{post['regular-body']}}</div>
+            <div ng-if="post['regular-title'].length > 0" ng-bind-html="post['regular-title']">{{post['regular-title']}}</div>
+        </div>
+    </div>
+
+    <div ng-show="welcome.showAllPosts" class="initial-posts all-posts">
+        <h3 class="text-center" ng-show="welcome.hideSearchArea">tumblr user: {{tumblrUser}}</h3><br />
+        <div class="initial-posts-list text-center" ng-repeat="post in welcome.joinedPosts">
+            <div ng-if="post['link-text'].length > 0 && post['link-url'].length > 0">
+                <a href="{{post['link-url']}}">{{post['link-text']}}</a>
+            </div>
+            <img ng-if="post['photo-url-400'].length > 0" ng-src="{{post['photo-url-400']}}" />
+            <div id="{{$index}}" class="post-description" ng-bind-html="post['photo-caption']" ng-if="post['photo-caption'].length > 0">{{post['photo-caption']}}</div>
+            <div ng-if="post['video-player'].length > 0" ng-bind-html="post['video-player']">{{post['video-player']}}</div>
+            <div ng-if="post['regular-body'].length > 0" ng-bind-html="post['regular-body']">{{post['regular-body']}}</div>
+            <div ng-if="post['regular-title'].length > 0" ng-bind-html="post['regular-title']">{{post['regular-title']}}</div>
+        </div>
+    </div>
+</div>
